@@ -35,7 +35,7 @@ FlowCore is a production-ready, modular web template structure designed for buil
 
 ## 📂 Project Structure
 ```text
-templates
+flowcore
 ├── index.html              # Dashboard with stats & activity
 ├── products.html           # Products management with DataTables
 ├── forms.html              # Form elements & jQuery UI Datepicker
