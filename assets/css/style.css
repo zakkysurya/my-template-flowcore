@@ -1,0 +1,552 @@
+:root {
+    /* Color Palette: Soft Slate / Nordic */
+    --fc-primary: #4a6fa5;       /* Muted Blue */
+    --fc-primary-hover: #3b5a84;
+    --fc-secondary: #8e9aaf;     /* Soft Grey-Blue */
+    --fc-success: #5c946e;       /* Muted Green */
+    --fc-info: #63a4ff;
+    --fc-warning: #e3b505;
+    --fc-danger: #d9534f;        /* Soft Red */
+    
+    --fc-bg-body: #e5e9f0;       /* Muted Nordic Grey */
+    --fc-bg-card: #ffffff;
+    --fc-text-main: #2c3e50;
+    --fc-text-muted: #6c757d;
+    --fc-border: #e9ecef;
+    
+    --sidebar-width: 260px;
+    --sidebar-bg: #2b3a4a;       /* Dark Blue-Grey */
+    --sidebar-text: #cfd8dc;
+    --sidebar-active: #4a6fa5;
+    
+    --header-height: 60px;
+}
+
+@import url('loader.css');
+
+body {
+    background-color: var(--fc-bg-body);
+    color: var(--fc-text-main);
+    font-family: 'Inter', 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--fc-text-main);
+    font-weight: 600;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 0.5rem;
+    background-color: var(--fc-bg-card);
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--fc-border);
+    font-weight: 600;
+    padding: 1rem 1.25rem;
+}
+
+/* Sidebar Navigation (Desktop) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow: hidden; /* Prevent body scroll, only internal nav scrolls */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 80px; /* Ensure content doesn't get hidden behind footer */
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background-color: var(--sidebar-bg); /* Ensure footer has background */
+    z-index: 1001;
+}
+
+.sidebar-btn-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem;
+    color: var(--sidebar-text);
+    background-color: transparent;
+    border: 1px solid #6c757d; /* Grey border */
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.sidebar-btn-logout:hover {
+    background-color: var(--fc-danger);
+    border-color: var(--fc-danger);
+    color: #fff;
+}
+
+.sidebar-brand {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.nav-link {
+    color: var(--sidebar-text);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #fff;
+    background-color: rgba(255,255,255,0.05);
+}
+
+.nav-link.active {
+    background-color: var(--sidebar-active);
+    border-left: 4px solid #fff;
+}
+
+.nav-link i {
+    width: 24px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.nav-link p {
+    margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 3-Level Deep Nesting */
+.nav-treeview {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.nav-item.menu-open > .nav-treeview {
+    display: block;
+}
+
+/* Level 2 indentation */
+.nav-treeview .nav-link {
+    padding-left: 3rem; 
+    font-size: 0.95rem;
+}
+
+/* Level 3 indentation */
+.nav-treeview .nav-treeview .nav-link {
+    padding-left: 4.5rem;
+    font-size: 0.9rem;
+}
+
+/* Sidebar Toggle Arrow */
+.nav-link .right-icon {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.nav-item.menu-open > .nav-link .right-icon {
+    transform: rotate(90deg);
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    padding-top: calc(var(--header-height) + 2rem);
+}
+
+/* Header */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    height: var(--header-height);
+    background-color: var(--sidebar-bg); /* Match Sidebar */
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 999;
+    transition: left 0.3s ease;
+}
+
+.main-header h5 {
+    color: #fff;
+}
+
+.main-header .btn-link {
+    color: #fff !important;
+}
+
+.main-header .btn-light {
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+}
+
+.main-header .btn-light:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Mobile Adaptations */
+@media (max-width: 991.98px) {
+    /* Hide Desktop Sidebar */
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    /* Full width content */
+    .main-content {
+        margin-left: 0;
+        padding-bottom: 80px; /* Space for bottom nav */
+    }
+    
+    .main-header {
+        left: 0;
+    }
+
+    /* Bottom App Bar for Mobile */
+    .mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--fc-bg-card);
+        border-top: 1px solid var(--fc-border);
+        height: 60px;
+        z-index: 1050;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: var(--fc-text-muted);
+        font-size: 0.75rem;
+    }
+    
+    .mobile-nav-item i {
+        font-size: 1.25rem;
+        margin-bottom: 2px;
+    }
+    
+    .mobile-nav-item.active {
+        color: var(--fc-primary);
+    }
+
+    /* Off-canvas Menu styling override if used */
+    .offcanvas-start {
+        width: 80% !important;
+    }
+
+    /* Responsive Table to Cards */
+    .table-responsive-stack tr {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--fc-border);
+        margin-bottom: 1rem;
+        background: #fff;
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .table-responsive-stack thead {
+        display: none;
+    }
+    
+    .table-responsive-stack td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .table-responsive-stack td:last-child {
+        border-bottom: none;
+    }
+    
+    .table-responsive-stack td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--fc-text-muted);
+    }
+}
+
+/* Custom jQuery UI Datepicker Styling */
+.ui-datepicker {
+    width: 280px;
+    padding: 0;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-family: 'Inter', sans-serif;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    z-index: 1100 !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    background-color: var(--fc-primary);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 0;
+    border-radius: 0;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    top: 8px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 4px;
+}
+
+.ui-datepicker .ui-datepicker-prev:hover,
+.ui-datepicker .ui-datepicker-next:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+    display: none;
+}
+
+.ui-datepicker .ui-datepicker-prev::after {
+    content: '\f053';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #fff;
+    display: block;
+    text-align: center;
+    line-height: 32px;
+}
+
+.ui-datepicker .ui-datepicker-next::after {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #fff;
+    display: block;
+    text-align: center;
+    line-height: 32px;
+}
+
+.ui-datepicker table {
+    width: 100%;
+    font-size: 0.9rem;
+    border-collapse: collapse;
+    margin: 0;
+    background: #fff;
+}
+
+.ui-datepicker th {
+    padding: 0.7rem 0;
+    text-align: center;
+    font-weight: 600;
+    color: var(--fc-text-muted);
+    border: 0;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.ui-datepicker td {
+    border: 0;
+    padding: 2px;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+    display: block;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    color: var(--fc-text-main);
+    transition: all 0.2s;
+}
+
+.ui-datepicker td a.ui-state-default {
+    background: transparent;
+    border: none;
+}
+
+.ui-datepicker td a.ui-state-hover {
+    background-color: var(--fc-bg-body);
+    color: var(--fc-primary);
+}
+
+.ui-datepicker td a.ui-state-active {
+    background-color: var(--fc-primary) !important;
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane {
+    background: #fff;
+    border-top: 1px solid var(--fc-border);
+    margin: 0;
+    padding: 0.5rem;
+}
+
+    .ui-datepicker .ui-datepicker-buttonpane button {
+    float: right;
+    margin: 0.25rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    border: 1px solid var(--fc-border);
+    background: #f8f9fa;
+}
+
+/* Custom jQuery Timepicker Styling */
+.ui-timepicker-wrapper {
+    width: 140px;
+    background: #fff;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 0.5rem;
+    z-index: 99999 !important; /* Ensure it's on top of everything */
+}
+
+.ui-timepicker-list li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    color: var(--fc-text-main);
+    list-style: none;
+    margin: 0;
+    transition: all 0.2s;
+}
+
+.ui-timepicker-list li:hover,
+.ui-timepicker-list .ui-timepicker-selected:hover {
+    background: var(--fc-bg-body);
+    color: var(--fc-primary);
+}
+
+li.ui-timepicker-selected {
+    background: var(--fc-primary);
+    color: #fff;
+}
+
+/* Sidebar Collapsed State (Desktop) */
+@media (min-width: 992px) {
+    body.sidebar-collapsed {
+        --sidebar-width: 70px;
+    }
+
+    body.sidebar-collapsed .sidebar-brand {
+        justify-content: center;
+        padding: 0;
+        font-size: 0; /* Hide text */
+    }
+
+    body.sidebar-collapsed .sidebar-brand i {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    body.sidebar-collapsed .nav-link {
+        justify-content: center;
+        padding: 0.75rem 0;
+    }
+
+    body.sidebar-collapsed .nav-link p,
+    body.sidebar-collapsed .nav-link .right-icon {
+        display: none;
+    }
+
+    body.sidebar-collapsed .nav-link i {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    /* Hide submenus in collapsed mode for simplicity or show on hover (advanced) */
+    body.sidebar-collapsed .nav-treeview {
+        display: none !important; 
+    }
+    
+    body.sidebar-collapsed .sidebar-btn-logout {
+        justify-content: center;
+        padding: 0.75rem 0;
+        border: none;
+    }
+    
+    body.sidebar-collapsed .sidebar-btn-logout span, 
+    body.sidebar-collapsed .sidebar-btn-logout i.me-2 { /* The icon has me-2 class */
+        margin-right: 0 !important;
+    }
+    
+    body.sidebar-collapsed .sidebar-btn-logout {
+        font-size: 0;
+    }
+    
+    body.sidebar-collapsed .sidebar-btn-logout i {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 992px) {    .mobile-bottom-nav {
+        display: none;
+    }
+    .mobile-menu-trigger {
+        display: none;
+    }
+}

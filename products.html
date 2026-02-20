@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowCore - Products</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-logo"><i class="fa-solid fa-layer-group"></i></div>
+    </div>
+
+    <!-- Desktop Sidebar -->
+    <aside class="sidebar d-none d-lg-block">
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-layer-group me-2"></i> FlowCore
+        </div>
+        <div class="sidebar-nav mt-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                
+                <!-- Level 1 -->
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <p>
+                            Masters
+                            <i class="right-icon fa-solid fa-chevron-right"></i>
+                        </p>
+                    </a>
+                    <!-- Level 2 -->
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="products.html" class="nav-link active">
+                                <i class="fa-regular fa-circle"></i>
+                                <p>Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa-regular fa-circle"></i>
+                                <p>
+                                    Accounting
+                                    <i class="right-icon fa-solid fa-chevron-right"></i>
+                                </p>
+                            </a>
+                            <!-- Level 3 -->
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-minus"></i>
+                                        <p>General Ledger</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-minus"></i>
+                                        <p>Chart of Accounts</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="forms.html" class="nav-link">
+                        <i class="fa-solid fa-align-justify"></i>
+                        <p>Forms</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="ui-kit.html" class="nav-link">
+                        <i class="fa-solid fa-swatchbook"></i>
+                        <p>UI Kit</p>
+                    </a>
+                </li>
+
+                 <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <a href="#" class="sidebar-btn-logout btn-logout">
+                <i class="fa-solid fa-power-off me-2"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="d-flex align-items-center">
+            <!-- Mobile Toggle -->
+            <button class="btn btn-link text-dark d-lg-none me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
+                <i class="fa-solid fa-bars fa-lg"></i>
+            </button>
+            <!-- Desktop Toggle -->
+            <button class="btn btn-link text-dark d-none d-lg-block me-3" type="button" id="sidebar-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+             <h5 class="mb-0 fw-semibold">Products Management</h5>
+        </div>
+        <div>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-user-circle me-1"></i> Admin
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="profile.html"><i class="fa-solid fa-user me-2 text-muted"></i>Profile</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-2 text-muted"></i>Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger btn-logout" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            
+            <!-- Filter Section -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#filterCollapse" style="cursor: pointer;">
+                    <span><i class="fa-solid fa-filter me-2 text-primary"></i> Advanced Filters</span>
+                    <i class="fa-solid fa-chevron-down text-muted"></i>
+                </div>
+                <div class="collapse show" id="filterCollapse">
+                    <div class="card-body bg-light">
+                        <form class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label small text-muted">Search Keyword</label>
+                                <div class="input-group shadow-sm">
+                                    <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+                                    <input type="text" class="form-control border-start-0" placeholder="Name, SKU, etc...">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label small text-muted">Category</label>
+                                <select class="form-select shadow-sm">
+                                    <option selected>All Categories</option>
+                                    <option>Electronics</option>
+                                    <option>Furniture</option>
+                                    <option>Clothing</option>
+                                </select>
+                            </div>
+                             <div class="col-md-3">
+                                <label class="form-label small text-muted">Stock Status</label>
+                                <select class="form-select shadow-sm">
+                                    <option selected>Any Status</option>
+                                    <option>In Stock</option>
+                                    <option>Low Stock</option>
+                                    <option>Out of Stock</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label small text-muted">Price Range</label>
+                                <div class="input-group shadow-sm">
+                                    <input type="number" class="form-control" placeholder="Min">
+                                    <span class="input-group-text">-</span>
+                                    <input type="number" class="form-control" placeholder="Max">
+                                </div>
+                            </div>
+                            <div class="col-12 text-end mt-3">
+                                <button type="reset" class="btn btn-light me-2 text-muted">Reset</button>
+                                <button type="button" class="btn btn-primary shadow-sm"><i class="fa-solid fa-check me-1"></i> Apply Filters</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Table Section -->
+            <div class="card shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Product List</span>
+                    <button class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="fa-solid fa-plus me-1"></i> Add Product</button>
+                </div>
+                <div class="card-body">
+                    <table id="productsTable" class="table table-striped dt-responsive nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Last Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample Data Row 1 -->
+                            <tr>
+                                <td>#PRD001</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-light rounded p-1 me-2 border" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fa-solid fa-image text-muted"></i>
+                                        </div>
+                                        <span class="fw-semibold text-dark">Wireless Headphones</span>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$129.99</td>
+                                <td>45</td>
+                                <td><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-3">In Stock</span></td>
+                                <td>2023-10-24</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-light btn-sm text-primary" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-light btn-sm text-danger" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                             <!-- Sample Data Row 2 -->
+                            <tr>
+                                <td>#PRD002</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-light rounded p-1 me-2 border" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fa-solid fa-couch text-muted"></i>
+                                        </div>
+                                        <span class="fw-semibold text-dark">Modern Sofa</span>
+                                    </div>
+                                </td>
+                                <td>Furniture</td>
+                                <td>$899.00</td>
+                                <td>5</td>
+                                <td><span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 rounded-pill px-3">Low Stock</span></td>
+                                <td>2023-10-20</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-light btn-sm text-primary" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-light btn-sm text-danger" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                             <!-- Sample Data Row 3 -->
+                            <tr>
+                                <td>#PRD003</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-light rounded p-1 me-2 border" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fa-solid fa-shirt text-muted"></i>
+                                        </div>
+                                        <span class="fw-semibold text-dark">Cotton T-Shirt</span>
+                                    </div>
+                                </td>
+                                <td>Clothing</td>
+                                <td>$24.50</td>
+                                <td>0</td>
+                                <td><span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 rounded-pill px-3">Out of Stock</span></td>
+                                <td>2023-10-15</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-light btn-sm text-primary" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-light btn-sm text-danger" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="addProductModalLabel"><i class="fa-solid fa-plus-circle me-2 text-primary"></i>Add New Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="addProductForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="productName" class="form-label text-muted small">Product Name</label>
+                                <input type="text" class="form-control" id="productName" placeholder="e.g. Wireless Mouse" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="productCategory" class="form-label text-muted small">Category</label>
+                                <select class="form-select" id="productCategory" required>
+                                    <option value="" selected disabled>Select category...</option>
+                                    <option>Electronics</option>
+                                    <option>Furniture</option>
+                                    <option>Clothing</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="productPrice" class="form-label text-muted small">Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">$</span>
+                                    <input type="number" class="form-control" id="productPrice" placeholder="0.00" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="productStock" class="form-label text-muted small">Stock Quantity</label>
+                                <input type="number" class="form-control" id="productStock" placeholder="0" required>
+                            </div>
+                             <div class="col-md-4">
+                                <label for="productStatus" class="form-label text-muted small">Status</label>
+                                <select class="form-select" id="productStatus" required>
+                                    <option value="In Stock">In Stock</option>
+                                    <option value="Low Stock">Low Stock</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="productDescription" class="form-label text-muted small">Description (Optional)</label>
+                                <textarea class="form-control" id="productDescription" rows="3" placeholder="Enter product details..."></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light border-0">
+                    <button type="button" class="btn btn-link text-muted text-decoration-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary px-4 shadow-sm" id="saveProductBtn">Save Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
+
+    <script src="assets/js/app.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTables
+            var table = $('#productsTable').DataTable({
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Quick Search..."
+                },
+                columnDefs: [
+                    { orderable: false, targets: 7 } // Disable sorting on Action column
+                ]
+            });
+            
+            // Custom styling for DataTables search input
+            $('.dataTables_filter input').addClass('form-control form-control-sm');
+            $('.dataTables_length select').addClass('form-select form-select-sm');
+
+            // Handle Add Product Button Click (Save)
+            $('#saveProductBtn').on('click', function() {
+                var form = $('#addProductForm')[0];
+                if (form.checkValidity() === false) {
+                    form.reportValidity();
+                    return;
+                }
+
+                // Show Confirmation
+                Swal.fire({
+                    title: 'Add Product?',
+                    text: "Are you sure you want to add this new product to the inventory?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#4a6fa5',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Add it',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Simulate Success
+                        $('#addProductModal').modal('hide'); // Close Modal
+                        
+                        // Fake processing delay
+                        Swal.fire({
+                            title: 'Saving...',
+                            text: 'Please wait while we update the catalog.',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            },
+                            timer: 1200
+                        }).then(() => {
+                             Swal.fire({
+                                icon: 'success',
+                                title: 'Product Added!',
+                                text: 'The new product has been successfully registered.',
+                                confirmButtonColor: '#4a6fa5'
+                            });
+                            
+                            // Reset Form
+                            form.reset();
+                            
+                            // Simulate Table Refresh
+                            table.draw(false); 
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
